@@ -36,15 +36,24 @@ export const authService = {
         throw new Error('Login failed')
       }
 
+      // Get additional profile data from profiles table
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single()
+        .catch(() => ({ data: null }))
+
       return {
         id: data.user.id,
         email: data.user.email || '',
         name: data.user.user_metadata?.name || 'User',
-        fitnessLevel: data.user.user_metadata?.fitnessLevel || 'beginner',
-        goals: data.user.user_metadata?.goals || [],
-        injuries: data.user.user_metadata?.injuries || [],
-        daysPerWeek: data.user.user_metadata?.daysPerWeek || 3,
-        preferredTrainingTime: data.user.user_metadata?.preferredTrainingTime || 'morning',
+        fitnessLevel: profileData?.fitness_level || data.user.user_metadata?.fitnessLevel || 'beginner',
+        goals: profileData?.goals || data.user.user_metadata?.goals || [],
+        injuries: profileData?.injuries || data.user.user_metadata?.injuries || [],
+        daysPerWeek: profileData?.days_per_week || data.user.user_metadata?.daysPerWeek || 3,
+        preferredTrainingTime: profileData?.preferred_training_time || data.user.user_metadata?.preferredTrainingTime || 'morning',
+        assessmentCompleted: profileData?.assessment_completed || false,
         createdAt: new Date(data.user.created_at),
       }
     } else {
@@ -152,15 +161,23 @@ export const authService = {
         return null
       }
 
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single()
+        .catch(() => ({ data: null }))
+
       return {
         id: data.user.id,
         email: data.user.email || '',
         name: data.user.user_metadata?.name || 'User',
-        fitnessLevel: data.user.user_metadata?.fitnessLevel || 'beginner',
-        goals: data.user.user_metadata?.goals || [],
-        injuries: data.user.user_metadata?.injuries || [],
-        daysPerWeek: data.user.user_metadata?.daysPerWeek || 3,
-        preferredTrainingTime: data.user.user_metadata?.preferredTrainingTime || 'morning',
+        fitnessLevel: profileData?.fitness_level || data.user.user_metadata?.fitnessLevel || 'beginner',
+        goals: profileData?.goals || data.user.user_metadata?.goals || [],
+        injuries: profileData?.injuries || data.user.user_metadata?.injuries || [],
+        daysPerWeek: profileData?.days_per_week || data.user.user_metadata?.daysPerWeek || 3,
+        preferredTrainingTime: profileData?.preferred_training_time || data.user.user_metadata?.preferredTrainingTime || 'morning',
+        assessmentCompleted: profileData?.assessment_completed || false,
         createdAt: new Date(data.user.created_at),
       }
     }
@@ -176,15 +193,24 @@ export const authService = {
       }
 
       const user = data.session.user
+
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+        .catch(() => ({ data: null }))
+
       return {
         id: user.id,
         email: user.email || '',
         name: user.user_metadata?.name || 'User',
-        fitnessLevel: user.user_metadata?.fitnessLevel || 'beginner',
-        goals: user.user_metadata?.goals || [],
-        injuries: user.user_metadata?.injuries || [],
-        daysPerWeek: user.user_metadata?.daysPerWeek || 3,
-        preferredTrainingTime: user.user_metadata?.preferredTrainingTime || 'morning',
+        fitnessLevel: profileData?.fitness_level || user.user_metadata?.fitnessLevel || 'beginner',
+        goals: profileData?.goals || user.user_metadata?.goals || [],
+        injuries: profileData?.injuries || user.user_metadata?.injuries || [],
+        daysPerWeek: profileData?.days_per_week || user.user_metadata?.daysPerWeek || 3,
+        preferredTrainingTime: profileData?.preferred_training_time || user.user_metadata?.preferredTrainingTime || 'morning',
+        assessmentCompleted: profileData?.assessment_completed || false,
         createdAt: new Date(user.created_at),
       }
     }
