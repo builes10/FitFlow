@@ -208,12 +208,18 @@ export const authService = {
 
       const user = data.session.user
 
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single()
-        .catch(() => ({ data: null }))
+      let profileData = null
+      try {
+        const { data: profiles, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+        if (!error && profiles && profiles.length > 0) {
+          profileData = profiles[0]
+        }
+      } catch (err) {
+        console.error('Error fetching profile:', err)
+      }
 
       return {
         id: user.id,
