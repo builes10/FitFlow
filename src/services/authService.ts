@@ -60,6 +60,19 @@ export const authService = {
   // Signup
   async signup(email: string, password: string, name: string): Promise<User> {
     if (isSupabaseConfigured()) {
+      // Check if email already exists by attempting to sign in with a dummy password
+      // If the error is about invalid password, the user exists
+      // If the error is about invalid email/user, the user doesn't exist
+      const { error: checkError } = await supabase.auth.signInWithPassword({
+        email,
+        password: '__check_if_exists__',
+      })
+
+      if (checkError && checkError.message && checkError.message.includes('Invalid login credentials')) {
+        // User exists (invalid password), so email is already registered
+        throw new Error('Email already registered')
+      }
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
