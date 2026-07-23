@@ -11,6 +11,9 @@ import { ProgressDashboardPage } from '@/pages/ProgressDashboardPage'
 import { AuthProvider } from '@/contexts/AuthContext'
 
 function App() {
+  // FitFlow - Comprehensive Fitness Training Platform
+  // Phase 5: Supabase Integration Complete
+  // Deployed on Vercel with Production Database
   return (
     <Router>
       <AuthProvider>
