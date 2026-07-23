@@ -60,10 +60,44 @@ export const workoutService = {
       } else if (plans && plans.length > 0) {
         const plan = plans[0]
         console.log('✅ Plan found:', plan)
-        // Parse schedule_json if it's a string
+        // Parse schedule_json and convert to WorkoutDay array
+        let schedule = []
+        const scheduleData = typeof plan.schedule_json === 'string' ? JSON.parse(plan.schedule_json) : plan.schedule_json
+
+        // Convert week1, week2, etc. structure to flat array
+        if (scheduleData && typeof scheduleData === 'object') {
+          const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+          let dayIndex = 0
+
+          // Iterate through all weeks
+          for (const weekKey in scheduleData) {
+            if (weekKey.startsWith('week')) {
+              const week = scheduleData[weekKey]
+              if (Array.isArray(week)) {
+                for (const day of week) {
+                  schedule.push({
+                    id: `day_${dayIndex}`,
+                    day: dayNames[dayIndex % 7],
+                    exercises: (day.exercises || []).map((name: string) => ({
+                      id: `ex_${name}`,
+                      name,
+                      sets: 3,
+                      reps: '8-12',
+                      completed: false,
+                    })),
+                    duration: 45,
+                    intensity: 'moderate',
+                  })
+                  dayIndex++
+                }
+              }
+            }
+          }
+        }
+
         return {
           ...plan,
-          schedule: typeof plan.schedule_json === 'string' ? JSON.parse(plan.schedule_json) : plan.schedule_json,
+          schedule,
         } as WorkoutPlan
       } else {
         console.warn('⚠️ No active plans found for user:', userId)
