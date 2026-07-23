@@ -53,16 +53,23 @@ export const workoutService = {
         .eq('user_id', userId)
         .eq('is_active', true)
 
-      if (!error && plans && plans.length > 0) {
+      console.log('🔍 getActivePlan query result:', { plans, error, userId })
+
+      if (error) {
+        console.error('❌ Supabase error:', error)
+      } else if (plans && plans.length > 0) {
         const plan = plans[0]
+        console.log('✅ Plan found:', plan)
         // Parse schedule_json if it's a string
         return {
           ...plan,
           schedule: typeof plan.schedule_json === 'string' ? JSON.parse(plan.schedule_json) : plan.schedule_json,
         } as WorkoutPlan
+      } else {
+        console.warn('⚠️ No active plans found for user:', userId)
       }
     } catch (err) {
-      console.warn('Failed to get active plan from Supabase:', err)
+      console.error('❌ Failed to get active plan from Supabase:', err)
     }
 
     // Fallback to localStorage
