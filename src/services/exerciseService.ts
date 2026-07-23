@@ -15,7 +15,7 @@ interface SimpleExercise {
 
 export const exerciseService = {
   // Get all exercises
-  getAll: (): SimpleExercise[] => exercises,
+  getAll: (): SimpleExercise[] => exercises as SimpleExercise[],
 
   // Get by category
   getByCategory: (category: string): SimpleExercise[] =>
