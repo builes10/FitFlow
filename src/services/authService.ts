@@ -39,14 +39,15 @@ export const authService = {
       // Get additional profile data from profiles table
       let profileData = null
       try {
-        const result = await supabase
+        const { data: profiles, error } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', data.user.id)
-          .single()
-        profileData = result.data
+        if (!error && profiles && profiles.length > 0) {
+          profileData = profiles[0]
+        }
       } catch (err) {
-        profileData = null
+        console.error('Error fetching profile:', err)
       }
 
       return {
@@ -166,12 +167,18 @@ export const authService = {
         return null
       }
 
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', data.user.id)
-        .single()
-        .catch(() => ({ data: null }))
+      let profileData = null
+      try {
+        const { data: profiles, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', data.user.id)
+        if (!error && profiles && profiles.length > 0) {
+          profileData = profiles[0]
+        }
+      } catch (err) {
+        console.error('Error fetching profile:', err)
+      }
 
       return {
         id: data.user.id,
