@@ -9,19 +9,22 @@ export const WorkoutPlanPage = () => {
   const navigate = useNavigate()
   const { currentUser: user, isLoading } = useAuth()
   const [plan, setPlan] = useState<WorkoutPlan | null>(null)
+  const [planLoading, setPlanLoading] = useState(true)
   const [expandedDay, setExpandedDay] = useState<string | null>(null)
 
   useEffect(() => {
     const loadPlan = async () => {
+      setPlanLoading(true)
       if (user?.id) {
         const activePlan = await workoutService.getActivePlan(user.id)
         setPlan(activePlan || null)
       }
+      setPlanLoading(false)
     }
     loadPlan()
   }, [user?.id])
 
-  if (isLoading) {
+  if (isLoading || planLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0a0e27] via-[#1a1f3a] to-[#0a0e27] flex items-center justify-center">
         <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#ff6b35] border-t-[#ffed4e]"></div>
