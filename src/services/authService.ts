@@ -60,25 +60,6 @@ export const authService = {
   // Signup
   async signup(email: string, password: string, name: string): Promise<User> {
     if (isSupabaseConfigured()) {
-      // Check if email already exists in profiles table
-      try {
-        const { data: existingProfile } = await supabase
-          .from('profiles')
-          .select('id')
-          .eq('email', email)
-          .single()
-
-        if (existingProfile) {
-          throw new Error('Email already registered')
-        }
-      } catch (err) {
-        // If not a "no rows" error, it's a real error
-        if (err instanceof Error && err.message === 'Email already registered') {
-          throw err
-        }
-        // "No rows" error is expected, continue with signup
-      }
-
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -90,7 +71,12 @@ export const authService = {
       })
 
       if (error) {
-        if (error.message.includes('already registered') || error.message.includes('User already exists')) {
+        // Handle Supabase error messages for duplicate email
+        if (
+          error.message.includes('already registered') ||
+          error.message.includes('User already exists') ||
+          error.message.includes('duplicate key value')
+        ) {
           throw new Error('Email already registered')
         }
         throw new Error(error.message)
