@@ -1,4 +1,4 @@
-import exercises from '@/data/exercises.json'
+import exercisesRaw from '@/data/exercises.json'
 
 interface SimpleExercise {
   id: string
@@ -13,9 +13,11 @@ interface SimpleExercise {
   rest?: number
 }
 
+const exercises: SimpleExercise[] = exercisesRaw as SimpleExercise[]
+
 export const exerciseService = {
   // Get all exercises
-  getAll: (): SimpleExercise[] => exercises as SimpleExercise[],
+  getAll: (): SimpleExercise[] => exercises,
 
   // Get by category
   getByCategory: (category: string): SimpleExercise[] =>
