@@ -20,7 +20,7 @@ export const databaseService = {
         return data || null
       } catch (err) {
         console.warn('Supabase error, falling back to localStorage', err)
-        return getLocalUser(userId)
+        return getLocalUser()
       }
     }
     return getLocalUser(userId)
