@@ -3,22 +3,36 @@ import { useNavigate } from 'react-router-dom'
 import { WorkoutPlan } from '@/types'
 import { workoutService } from '@/services/workoutService'
 import { exerciseService } from '@/services/exerciseService'
+import { useAuth } from '@/contexts/AuthContext'
 
 export const WorkoutPlanPage = () => {
   const navigate = useNavigate()
+  const { currentUser: user, isLoading } = useAuth()
   const [plan, setPlan] = useState<WorkoutPlan | null>(null)
   const [expandedDay, setExpandedDay] = useState<string | null>(null)
 
   useEffect(() => {
     const loadPlan = async () => {
-      const user = JSON.parse(localStorage.getItem('fitflow_user') || '{}')
-      if (user.id) {
+      if (user?.id) {
         const activePlan = await workoutService.getActivePlan(user.id)
         setPlan(activePlan || null)
       }
     }
     loadPlan()
-  }, [])
+  }, [user?.id])
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#0a0e27] via-[#1a1f3a] to-[#0a0e27] flex items-center justify-center">
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#ff6b35] border-t-[#ffed4e]"></div>
+      </div>
+    )
+  }
+
+  if (!user?.assessmentCompleted) {
+    navigate('/assessment')
+    return null
+  }
 
   if (!plan) {
     return (
