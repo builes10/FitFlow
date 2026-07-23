@@ -43,8 +43,10 @@ export const authService = {
           .from('profiles')
           .select('*')
           .eq('id', data.user.id)
+        console.log('Profile query result:', { profiles, error, userId: data.user.id })
         if (!error && profiles && profiles.length > 0) {
           profileData = profiles[0]
+          console.log('Profile data loaded:', profileData)
         }
       } catch (err) {
         console.error('Error fetching profile:', err)
