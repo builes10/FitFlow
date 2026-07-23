@@ -45,11 +45,33 @@ export const workoutService = {
   // Get active plan for user (with Supabase/localStorage fallback)
   getActivePlan: async (userId: string): Promise<WorkoutPlan | undefined> => {
     try {
+      // First try to get from Supabase
+      const { supabase } = await import('./supabaseClient')
+      const { data: plans, error } = await supabase
+        .from('workout_plans')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('is_active', true)
+
+      if (!error && plans && plans.length > 0) {
+        const plan = plans[0]
+        // Parse schedule_json if it's a string
+        return {
+          ...plan,
+          schedule: typeof plan.schedule_json === 'string' ? JSON.parse(plan.schedule_json) : plan.schedule_json,
+        } as WorkoutPlan
+      }
+    } catch (err) {
+      console.warn('Failed to get active plan from Supabase:', err)
+    }
+
+    // Fallback to localStorage
+    try {
       const stored = localStorage.getItem(`plans_${userId}`)
       const plans = stored ? JSON.parse(stored) : []
       return plans.find((p: WorkoutPlan) => p.isActive)
     } catch (err) {
-      console.warn('Failed to get active plan:', err)
+      console.warn('Failed to get active plan from localStorage:', err)
       return undefined
     }
   },
