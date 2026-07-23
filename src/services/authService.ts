@@ -71,6 +71,9 @@ export const authService = {
       })
 
       if (error) {
+        if (error.message.includes('already registered') || error.message.includes('User already exists')) {
+          throw new Error('Email already registered')
+        }
         throw new Error(error.message)
       }
 
@@ -90,7 +93,11 @@ export const authService = {
         createdAt: new Date(data.user.created_at),
       }
     } else {
-      // Mock signup
+      // Mock signup - check if email exists
+      if (mockUsers[email]) {
+        throw new Error('Email already registered')
+      }
+
       const newUser: User = {
         id: Math.random().toString(),
         email,
