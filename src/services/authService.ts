@@ -37,12 +37,17 @@ export const authService = {
       }
 
       // Get additional profile data from profiles table
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', data.user.id)
-        .single()
-        .catch(() => ({ data: null }))
+      let profileData = null
+      try {
+        const result = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', data.user.id)
+          .single()
+        profileData = result.data
+      } catch (err) {
+        profileData = null
+      }
 
       return {
         id: data.user.id,
