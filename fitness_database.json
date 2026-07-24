@@ -1,0 +1,741 @@
+{
+  "exercises": [
+    {
+      "id": "ex_burpee",
+      "name": "Burpee",
+      "category": "functional",
+      "difficulty": 5,
+      "primaryMuscles": ["chest", "triceps", "core", "legs"],
+      "secondaryMuscles": ["shoulders", "back"],
+      "equipment": ["bodyweight"],
+      "description": "Full body explosive movement combining squat, plank, and jump",
+      "variations": ["burpee_box_jump", "burpee_strict", "semi_burpee"],
+      "tags": ["cardio", "CrossFit", "HIIT"]
+    },
+    {
+      "id": "ex_push_up",
+      "name": "Push Up / Flexiones de Pecho",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["chest", "triceps"],
+      "secondaryMuscles": ["shoulders", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Classic upper body pressing movement",
+      "variations": ["push_up_negative", "hand_release_push_up", "diamond_push_up", "elevated_push_up", "circle_push_up"],
+      "tags": ["strength", "upper_body"]
+    },
+    {
+      "id": "ex_squat",
+      "name": "Sentadilla / Squat",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["quadriceps", "glutes", "hamstrings"],
+      "secondaryMuscles": ["core", "back"],
+      "equipment": ["bodyweight"],
+      "description": "Lower body compound movement",
+      "variations": ["jumping_squat", "squat_pistol", "sumo_squat", "lateral_squat", "paused_squat"],
+      "tags": ["strength", "lower_body", "compound"]
+    },
+    {
+      "id": "ex_jumping_jacks",
+      "name": "Saltos en Payaso / Jumping Jacks",
+      "category": "cardio",
+      "difficulty": 2,
+      "primaryMuscles": ["glutes", "quadriceps", "calves"],
+      "secondaryMuscles": ["shoulders", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Full body cardio warm-up movement",
+      "tags": ["cardio", "warmup", "HIIT"]
+    },
+    {
+      "id": "ex_jump_rope",
+      "name": "Saltos en Lazo / Jump Rope",
+      "category": "cardio",
+      "difficulty": 2,
+      "primaryMuscles": ["calves", "shoulders"],
+      "secondaryMuscles": ["core", "forearms"],
+      "equipment": ["jump_rope"],
+      "description": "Classic cardio and coordination exercise",
+      "tags": ["cardio", "warmup", "coordination"]
+    },
+    {
+      "id": "ex_ab_butterfly",
+      "name": "Abdomen Mariposa / Ab Butterfly",
+      "category": "core",
+      "difficulty": 3,
+      "primaryMuscles": ["abs"],
+      "secondaryMuscles": ["hip_flexors"],
+      "equipment": ["bodyweight"],
+      "description": "Core exercise targeting rectus abdominis with hip flexion",
+      "tags": ["core", "abs", "functional"]
+    },
+    {
+      "id": "ex_leg_raises",
+      "name": "Sube y Baja Pierna / Leg Raises",
+      "category": "core",
+      "difficulty": 3,
+      "primaryMuscles": ["abs", "hip_flexors"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["bodyweight"],
+      "description": "Lying leg raise targeting lower abdominals",
+      "tags": ["core", "abs", "lower_ab"]
+    },
+    {
+      "id": "ex_superman",
+      "name": "Superman",
+      "category": "core",
+      "difficulty": 2,
+      "primaryMuscles": ["back", "glutes"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["bodyweight"],
+      "description": "Lower back and glute activation exercise",
+      "tags": ["core", "back", "mobility"]
+    },
+    {
+      "id": "ex_inch_worms",
+      "name": "Gusanos / Inch Worms",
+      "category": "functional",
+      "difficulty": 3,
+      "primaryMuscles": ["hamstrings", "shoulders", "core"],
+      "secondaryMuscles": ["chest", "triceps"],
+      "equipment": ["bodyweight"],
+      "description": "Full body warmup exercise combining stretch and activation",
+      "tags": ["warmup", "mobility", "functional"]
+    },
+    {
+      "id": "ex_mountain_climbers",
+      "name": "Escaladores / Mountain Climbers",
+      "category": "cardio",
+      "difficulty": 3,
+      "primaryMuscles": ["core", "hip_flexors"],
+      "secondaryMuscles": ["chest", "shoulders"],
+      "equipment": ["bodyweight"],
+      "description": "Dynamic core and cardio movement",
+      "tags": ["cardio", "core", "warmup"]
+    },
+    {
+      "id": "ex_bench_dips",
+      "name": "Fondos en Caja / Bench Dips",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["triceps", "shoulders"],
+      "secondaryMuscles": ["chest", "core"],
+      "equipment": ["bench", "box"],
+      "description": "Tricep and shoulder pressing movement using bench",
+      "tags": ["upper_body", "strength", "triceps"]
+    },
+    {
+      "id": "ex_lunges",
+      "name": "Avanzadas / Lunges",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Single leg movement targeting quads and glutes",
+      "variations": ["jumping_lunges", "walking_lunges", "reverse_lunges"],
+      "tags": ["lower_body", "unilateral"]
+    },
+    {
+      "id": "ex_sit_ups",
+      "name": "Sit Ups",
+      "category": "core",
+      "difficulty": 2,
+      "primaryMuscles": ["abs"],
+      "secondaryMuscles": ["hip_flexors"],
+      "equipment": ["bodyweight"],
+      "description": "Classic abdominal flexion exercise",
+      "variations": ["v_sit_ups", "chair_sit_ups"],
+      "tags": ["core", "abs"]
+    },
+    {
+      "id": "ex_plank",
+      "name": "Plancha / Plank",
+      "category": "core",
+      "difficulty": 2,
+      "primaryMuscles": ["core", "shoulders"],
+      "secondaryMuscles": ["back", "triceps"],
+      "equipment": ["bodyweight"],
+      "description": "Isometric core stability exercise",
+      "tags": ["core", "isometric", "stability"]
+    },
+    {
+      "id": "ex_hollow_rock",
+      "name": "Hollow Rock / Canoas",
+      "category": "functional",
+      "difficulty": 3,
+      "primaryMuscles": ["core"],
+      "secondaryMuscles": ["shoulders", "quads"],
+      "equipment": ["bodyweight"],
+      "description": "Foundational movement for gymnastics strength",
+      "tags": ["gymnastic", "core", "mobility"]
+    },
+    {
+      "id": "ex_shoulder_taps",
+      "name": "Shoulder Taps",
+      "category": "core",
+      "difficulty": 3,
+      "primaryMuscles": ["core", "shoulders"],
+      "secondaryMuscles": ["chest"],
+      "equipment": ["bodyweight"],
+      "description": "Dynamic plank variation for shoulder and core stability",
+      "tags": ["core", "shoulders", "stability"]
+    },
+    {
+      "id": "ex_hspu",
+      "name": "Hand Stand Push Ups / HSPU",
+      "category": "strength",
+      "difficulty": 5,
+      "primaryMuscles": ["shoulders", "triceps"],
+      "secondaryMuscles": ["core", "back"],
+      "equipment": ["bodyweight", "wall"],
+      "description": "Advanced vertical pressing movement requiring shoulder strength and balance",
+      "variations": ["hspu_assisted", "hspu_pike", "hspu_elevated"],
+      "tags": ["gymnastic", "shoulders", "advanced"]
+    },
+    {
+      "id": "ex_pistol_squat",
+      "name": "Sentadilla Pistola / Pistol Squat",
+      "category": "strength",
+      "difficulty": 5,
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Single leg squat requiring significant strength and mobility",
+      "variations": ["pistol_squat_assisted", "pistol_squat_box"],
+      "tags": ["lower_body", "unilateral", "advanced"]
+    },
+    {
+      "id": "ex_step_up",
+      "name": "Step Up",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["quadriceps", "glutes"],
+      "secondaryMuscles": ["hamstrings"],
+      "equipment": ["bench", "box", "stairs"],
+      "description": "Single leg stepping movement for leg strength",
+      "tags": ["lower_body", "unilateral"]
+    },
+    {
+      "id": "ex_single_leg_bridge",
+      "name": "Single Leg Bridge",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["glutes"],
+      "secondaryMuscles": ["hamstrings", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Unilateral glute activation and strength exercise",
+      "tags": ["glutes", "lower_body", "unilateral"]
+    },
+    {
+      "id": "ex_wall_sit",
+      "name": "Wall Sit",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["quadriceps"],
+      "secondaryMuscles": ["glutes"],
+      "equipment": ["bodyweight", "wall"],
+      "description": "Isometric leg strength exercise",
+      "tags": ["isometric", "lower_body", "strength"]
+    },
+    {
+      "id": "ex_knee_tucks",
+      "name": "Rodillas al Pecho / Knee Tucks",
+      "category": "cardio",
+      "difficulty": 3,
+      "primaryMuscles": ["hip_flexors", "core"],
+      "secondaryMuscles": ["abs"],
+      "equipment": ["bodyweight"],
+      "description": "Dynamic movement bringing knees to chest",
+      "tags": ["cardio", "core", "HIIT"]
+    },
+    {
+      "id": "ex_low_high_plank",
+      "name": "Low High to Plank",
+      "category": "functional",
+      "difficulty": 3,
+      "primaryMuscles": ["shoulders", "core"],
+      "secondaryMuscles": ["chest", "triceps"],
+      "equipment": ["bodyweight"],
+      "description": "Dynamic plank variation alternating between forearm and hand plank",
+      "tags": ["core", "shoulders", "functional"]
+    },
+    {
+      "id": "ex_v_sit_ups",
+      "name": "Sit Ups en V / V Sit Ups",
+      "category": "core",
+      "difficulty": 4,
+      "primaryMuscles": ["abs"],
+      "secondaryMuscles": ["hip_flexors", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Advanced ab movement with full body flexion",
+      "tags": ["core", "abs", "advanced"]
+    },
+    {
+      "id": "ex_chair_sit_ups",
+      "name": "Chair Sit Ups",
+      "category": "core",
+      "difficulty": 3,
+      "primaryMuscles": ["abs", "obliques"],
+      "secondaryMuscles": ["hip_flexors"],
+      "equipment": ["chair"],
+      "description": "Sit up variation using chair for leverage and oblique engagement",
+      "tags": ["core", "abs", "obliques"]
+    },
+    {
+      "id": "ex_back_extension",
+      "name": "Back Extensión / Superman Holds",
+      "category": "core",
+      "difficulty": 2,
+      "primaryMuscles": ["back", "glutes"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["bodyweight"],
+      "description": "Lower back and posterior chain strengthening",
+      "tags": ["back", "core", "strength"]
+    },
+    {
+      "id": "ex_lateral_ab",
+      "name": "Abdomen Lateral / Side Abs",
+      "category": "core",
+      "difficulty": 3,
+      "primaryMuscles": ["obliques"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["bodyweight"],
+      "description": "Oblique and lateral core engagement",
+      "tags": ["core", "obliques"]
+    },
+    {
+      "id": "ex_v_ab",
+      "name": "Abdominales en V",
+      "category": "core",
+      "difficulty": 4,
+      "primaryMuscles": ["abs"],
+      "secondaryMuscles": ["hip_flexors"],
+      "equipment": ["bodyweight"],
+      "description": "Advanced V-shaped abdominal crunch",
+      "tags": ["core", "abs", "advanced"]
+    },
+    {
+      "id": "ex_pike_push_up",
+      "name": "Pike Push Up",
+      "category": "strength",
+      "difficulty": 4,
+      "primaryMuscles": ["shoulders"],
+      "secondaryMuscles": ["triceps", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Inverted push up variation emphasizing shoulders",
+      "tags": ["shoulders", "strength", "advanced"]
+    },
+    {
+      "id": "ex_diamond_push_up",
+      "name": "Diamond Push Up",
+      "category": "strength",
+      "difficulty": 4,
+      "primaryMuscles": ["triceps"],
+      "secondaryMuscles": ["chest", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Push up with hands forming diamond shape for tricep emphasis",
+      "tags": ["triceps", "chest", "strength"]
+    },
+    {
+      "id": "ex_push_up_rotation",
+      "name": "Push Up con Rotación de Torso",
+      "category": "functional",
+      "difficulty": 4,
+      "primaryMuscles": ["chest", "triceps", "core"],
+      "secondaryMuscles": ["obliques", "shoulders"],
+      "equipment": ["bodyweight"],
+      "description": "Push up with spinal rotation for core and thoracic mobility",
+      "tags": ["core", "chest", "rotation"]
+    },
+    {
+      "id": "ex_indu_push_up",
+      "name": "Push Up Índigo / Incline Push Up",
+      "category": "strength",
+      "difficulty": 2,
+      "primaryMuscles": ["chest", "triceps"],
+      "secondaryMuscles": ["shoulders", "core"],
+      "equipment": ["bodyweight", "bench"],
+      "description": "Modified push up with hands elevated for reduced difficulty",
+      "tags": ["chest", "triceps", "beginner"]
+    },
+    {
+      "id": "ex_sumo_squat",
+      "name": "Sentadilla Sumo / Sumo Squat",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["glutes", "adductors"],
+      "secondaryMuscles": ["quadriceps", "core"],
+      "equipment": ["bodyweight"],
+      "description": "Wide stance squat targeting inner thighs and glutes",
+      "tags": ["lower_body", "glutes"]
+    },
+    {
+      "id": "ex_lateral_squat",
+      "name": "Sentadilla Lateral",
+      "category": "strength",
+      "difficulty": 3,
+      "primaryMuscles": ["glutes", "adductors"],
+      "secondaryMuscles": ["quadriceps"],
+      "equipment": ["bodyweight"],
+      "description": "Side-to-side movement for lateral leg strength",
+      "tags": ["lower_body", "unilateral"]
+    },
+    {
+      "id": "ex_skipping",
+      "name": "Skipping",
+      "category": "cardio",
+      "difficulty": 2,
+      "primaryMuscles": ["hip_flexors", "calves"],
+      "secondaryMuscles": ["core", "shoulders"],
+      "equipment": ["bodyweight"],
+      "description": "Running in place with high knees for cardio and coordination",
+      "tags": ["cardio", "warmup", "coordination"]
+    },
+    {
+      "id": "ex_seated_in_out",
+      "name": "Seated In Out",
+      "category": "core",
+      "difficulty": 2,
+      "primaryMuscles": ["abs", "hip_flexors"],
+      "secondaryMuscles": ["core"],
+      "equipment": ["bodyweight"],
+      "description": "Seated tuck movement for core engagement",
+      "tags": ["core", "abs"]
+    }
+  ],
+  "training_plans": [
+    {
+      "id": "plan_week1_basic",
+      "name": "Plan Semana 1 - Principiante",
+      "description": "Plan básico de entrenamiento para la primera semana (30 marzo - 3 abril)",
+      "difficulty": "beginner",
+      "durationWeeks": 1,
+      "structure": [
+        {
+          "day": "Monday",
+          "dayName": "DIA 1",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_jump_rope", "reps": "50", "sets": 4, "notes": "O saltar palo de lado a lado"},
+                {"exerciseId": "ex_skipping", "reps": "30 seg", "sets": 1}
+              ],
+              "duration": 10
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "ABDOMEN",
+              "exercises": [
+                {"exerciseId": "ex_ab_butterfly", "reps": "25", "sets": 4},
+                {"exerciseId": "ex_leg_raises", "reps": "25", "sets": 4},
+                {"exerciseId": "ex_superman", "reps": "25", "sets": 4}
+              ],
+              "duration": 20
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "POR TIEMPO",
+              "exercises": [
+                {"exerciseId": "ex_burpee", "reps": "50"},
+                {"exerciseId": "ex_push_up", "reps": "40"},
+                {"exerciseId": "ex_squat", "reps": "150"}
+              ],
+              "duration": 20
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "dayName": "DIA 2",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_jumping_jacks", "reps": "20", "sets": 4},
+                {"exerciseId": "ex_inch_worms", "reps": "6", "sets": 4}
+              ],
+              "duration": 10
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "ABDOMEN - TABATA",
+              "exercises": [
+                {"exerciseId": "ex_plank", "reps": "20/10", "sets": 1, "notes": "20 seg trabajo, 10 desc"},
+                {"exerciseId": "ex_superman", "reps": "20/10", "sets": 1, "notes": "Sostenido"}
+              ],
+              "duration": 15
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "12 MIN AMRAP",
+              "exercises": [
+                {"exerciseId": "ex_push_up", "reps": "9", "notes": "Hand release"},
+                {"exerciseId": "ex_squat", "reps": "6", "notes": "Con salto"},
+                {"exerciseId": "ex_burpee", "reps": "3"}
+              ],
+              "duration": 12
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "dayName": "DIA 3",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_squat", "reps": "200"},
+                {"exerciseId": "ex_jump_rope", "reps": "300"}
+              ],
+              "duration": 15
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "ABDOMEN",
+              "exercises": [
+                {"exerciseId": "ex_plank", "reps": "20 seg", "sets": 5},
+                {"exerciseId": "ex_mountain_climbers", "reps": "20", "sets": 5}
+              ],
+              "duration": 15
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "EMOM (Cada Minuto x 3 Rondas)",
+              "exercises": [
+                {"exerciseId": "ex_ab_butterfly", "reps": "Max", "notes": "Min 1"},
+                {"exerciseId": "ex_leg_raises", "reps": "Max", "notes": "Min 2"},
+                {"exerciseId": "ex_lunges", "reps": "Max", "notes": "Min 3"},
+                {"exerciseId": "ex_burpee", "reps": "Max", "notes": "Min 4"},
+                {"exerciseId": "ex_jumping_jacks", "reps": "Max", "notes": "Min 5"},
+                {"notes": "Min 6: Descanso"}
+              ],
+              "duration": 18
+            }
+          ]
+        },
+        {
+          "day": "Thursday",
+          "dayName": "DIA 4",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO (50-30-10)",
+              "exercises": [
+                {"exerciseId": "ex_jump_rope", "reps": "50, 30, 10"},
+                {"exerciseId": "ex_hollow_rock", "reps": "Máx", "notes": "Al final de la ronda 10"}
+              ],
+              "duration": 10
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "ENTRENAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_push_up", "reps": "100"},
+                {"exerciseId": "ex_bench_dips", "reps": "80"},
+                {"exerciseId": "ex_lunges", "reps": "60", "notes": "Con salto"},
+                {"exerciseId": "ex_v_ab", "reps": "40"},
+                {"exerciseId": "ex_burpee", "reps": "20", "notes": "Con flexión pecho estricta"}
+              ],
+              "duration": 35
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "dayName": "DIA 5",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_inch_worms", "reps": "10, 8, 6, 4, 2"},
+                {"exerciseId": "ex_ab_butterfly", "reps": "10, 8, 6, 4, 2"}
+              ],
+              "duration": 10
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "22 MIN AMRAP",
+              "exercises": [
+                {"exerciseId": "ex_knee_tucks", "reps": "15"},
+                {"exerciseId": "ex_squat", "reps": "25", "notes": "Con salto"},
+                {"exerciseId": "ex_ab_butterfly", "reps": "50", "notes": "Cruzadas"},
+                {"exerciseId": "ex_step_up", "reps": "75"},
+                {"exerciseId": "ex_burpee", "reps": "Max", "notes": "En el tiempo que sobra"}
+              ],
+              "duration": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan_week3_advanced",
+      "name": "Plan Semana 3 - Avanzado",
+      "description": "Plan avanzado con HSPU y movimientos complejos (13 abril - 17 abril)",
+      "difficulty": "advanced",
+      "durationWeeks": 1,
+      "structure": [
+        {
+          "day": "Monday",
+          "dayName": "Día 1",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_shoulder_taps", "reps": "50"},
+                {"exerciseId": "ex_low_high_plank", "reps": "40"},
+                {"exerciseId": "ex_v_sit_ups", "reps": "30"},
+                {"exerciseId": "ex_push_up", "reps": "20"},
+                {"exerciseId": "ex_indu_push_up", "reps": "10"}
+              ],
+              "duration": 15
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "HAND STAND PUSH UPS",
+              "exercises": [
+                {"exerciseId": "ex_hspu", "reps": "Max", "duration": "1 min", "notes": "Min 1"},
+                {"exerciseId": "ex_hollow_rock", "reps": "Max", "duration": "1 min", "notes": "Min 2"},
+                {"notes": "Min 3: Descanso"}
+              ],
+              "duration": 15,
+              "sets": 5
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "FINALIZADOR",
+              "exercises": [
+                {"exerciseId": "ex_push_up", "reps": "100", "notes": "En círculo"}
+              ],
+              "duration": 15
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "dayName": "Día 2",
+          "phases": [
+            {
+              "phase": "strength",
+              "phaseTitle": "ABDOMEN TABATA",
+              "exercises": [
+                {"exerciseId": "ex_ab_butterfly", "reps": "20/10", "notes": "Min 1"},
+                {"exerciseId": "ex_seated_in_out", "reps": "20/10", "notes": "Min 2"},
+                {"exerciseId": "ex_lateral_ab", "reps": "20/10", "notes": "Min 3"},
+                {"notes": "Min 4: Descanso"}
+              ],
+              "duration": 20,
+              "sets": 5
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "SENTADILLAS",
+              "exercises": [
+                {"exerciseId": "ex_squat", "reps": "350", "notes": "Quebrando 90°"},
+                {"exerciseId": "ex_burpee", "reps": "4", "notes": "Cada minuto"}
+              ],
+              "duration": 30
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "dayName": "Día 3",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_jumping_jacks", "reps": "50"},
+                {"exerciseId": "ex_knee_tucks", "reps": "50"},
+                {"exerciseId": "ex_mountain_climbers", "reps": "50"},
+                {"exerciseId": "ex_push_up", "reps": "50"}
+              ],
+              "duration": 10
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "ENTRENAMIENTO ESTRUCTURADO",
+              "exercises": [
+                {"exerciseId": "ex_push_up", "reps": "10", "notes": "00:00 - 04:00 - Max Rounds"},
+                {"exerciseId": "ex_squat", "reps": "10", "notes": "Con salto"},
+                {"exerciseId": "ex_pistol_squat", "reps": "30, 20, 10", "notes": "04:00 - 12:00"},
+                {"exerciseId": "ex_push_up", "reps": "30, 20, 10", "notes": "Elevada diamante"},
+                {"exerciseId": "ex_hspu", "reps": "100", "notes": "12:00 - 24:00"},
+                {"exerciseId": "ex_pike_push_up", "reps": "Max", "notes": "24:00 - 30:00 - Lo que sobre"},
+                {"exerciseId": "ex_ab_butterfly", "reps": "Max", "notes": "30:00+ - Sit ups"}
+              ],
+              "duration": 30
+            }
+          ]
+        },
+        {
+          "day": "Thursday",
+          "dayName": "Día 4",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO TABATA",
+              "exercises": [
+                {"exerciseId": "ex_knee_tucks", "reps": "20/10", "notes": "Saltando"},
+                {"exerciseId": "ex_squat", "reps": "20/10", "notes": "Con salto"}
+              ],
+              "duration": 8,
+              "notes": "½ tábata cada uno"
+            },
+            {
+              "phase": "strength",
+              "phaseTitle": "EMOM x 3 RONDAS",
+              "exercises": [
+                {"exerciseId": "ex_sumo_squat", "reps": "Max", "notes": "Min 1"},
+                {"exerciseId": "ex_lateral_squat", "reps": "Max", "notes": "Min 2"},
+                {"exerciseId": "ex_step_up", "reps": "Max", "notes": "Min 3"},
+                {"exerciseId": "ex_single_leg_bridge", "reps": "Max", "notes": "Min 4"},
+                {"exerciseId": "ex_leg_raises", "reps": "Max", "notes": "Min 5 - Piernas extendidas"},
+                {"notes": "Min 6-7: Descanso 2 min"}
+              ],
+              "duration": 21,
+              "sets": 3
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "dayName": "Día 5",
+          "phases": [
+            {
+              "phase": "warmup",
+              "phaseTitle": "CALENTAMIENTO",
+              "exercises": [
+                {"exerciseId": "ex_inch_worms", "reps": "30"},
+                {"exerciseId": "ex_push_up_rotation", "reps": "30", "notes": "Con rotación de torso"},
+                {"exerciseId": "ex_wall_sit", "reps": "30 seg"},
+                {"exerciseId": "ex_squat", "reps": "30", "notes": "Con pausa 2 seg abajo"}
+              ],
+              "duration": 15
+            },
+            {
+              "phase": "wod",
+              "phaseTitle": "FINAL",
+              "exercises": [
+                {"exerciseId": "ex_burpee", "reps": "50", "notes": "Over the palo"},
+                {"exerciseId": "ex_hspu", "reps": "5"},
+                {"exerciseId": "ex_pistol_squat", "reps": "10"},
+                {"exerciseId": "ex_ab_butterfly", "reps": "20"}
+              ],
+              "duration": 20,
+              "notes": "20 min - Mayor cantidad de rondas"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
