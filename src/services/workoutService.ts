@@ -42,6 +42,63 @@ export const workoutService = {
     }
   },
 
+  // Get available training plans from Supabase
+  getAvailablePlans: async (): Promise<any[]> => {
+    try {
+      const { supabase } = await import('./supabaseClient')
+      const { data: plans, error } = await supabase
+        .from('training_plans')
+        .select('*')
+        .order('difficulty', { ascending: true })
+
+      if (error) {
+        console.error('❌ Error fetching plans:', error)
+        return []
+      }
+
+      console.log('✅ Available plans:', plans)
+      return plans || []
+    } catch (err) {
+      console.error('❌ Failed to fetch plans:', err)
+      return []
+    }
+  },
+
+  // Get plan with all details (days, phases, exercises)
+  getPlanWithDetails: async (planId: string): Promise<any | null> => {
+    try {
+      const { supabase } = await import('./supabaseClient')
+      const { data: plan, error } = await supabase
+        .from('training_plans')
+        .select(`
+          *,
+          training_plan_days(
+            *,
+            training_phases(
+              *,
+              training_phase_exercises(
+                *,
+                exercises(id, name, description, category, difficulty, primary_muscles, secondary_muscles, equipment, tags)
+              )
+            )
+          )
+        `)
+        .eq('id', planId)
+        .single()
+
+      if (error) {
+        console.error('❌ Error fetching plan details:', error)
+        return null
+      }
+
+      console.log('✅ Plan with details:', plan)
+      return plan
+    } catch (err) {
+      console.error('❌ Failed to fetch plan details:', err)
+      return null
+    }
+  },
+
   // Get active plan for user (with Supabase/localStorage fallback)
   getActivePlan: async (userId: string): Promise<WorkoutPlan | undefined> => {
     try {

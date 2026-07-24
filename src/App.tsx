@@ -4,6 +4,7 @@ import { SignupPage } from '@/pages/SignupPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { AssessmentPage } from '@/pages/AssessmentPage'
 import { WorkoutPlanPage } from '@/pages/WorkoutPlanPage'
+import { SelectPlanPage } from '@/pages/SelectPlanPage'
 import { CustomizePlanPage } from '@/pages/CustomizePlanPage'
 import { WorkoutHistoryPage } from '@/pages/WorkoutHistoryPage'
 import { WorkoutDetailPage } from '@/pages/WorkoutDetailPage'
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/assessment" element={<AssessmentPage />} />
+        <Route path="/select-plan" element={<SelectPlanPage />} />
         <Route path="/workout-plan" element={<WorkoutPlanPage />} />
         <Route path="/plan/customize" element={<CustomizePlanPage />} />
         <Route path="/history" element={<WorkoutHistoryPage />} />

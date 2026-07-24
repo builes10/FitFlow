@@ -107,21 +107,31 @@ export const DashboardPage = () => {
             </p>
           </div>
 
-          {user.assessmentCompleted ? (
-            <button
-              onClick={() => navigate('/workout-plan')}
-              className="btn-primary w-full sm:w-auto py-4 px-10 text-lg font-bold inline-block"
-            >
-              View My Plan
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate('/assessment')}
-              className="btn-primary w-full sm:w-auto py-4 px-10 text-lg font-bold inline-block"
-            >
-              Start Assessment
-            </button>
-          )}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {user.assessmentCompleted ? (
+              <>
+                <button
+                  onClick={() => navigate('/workout-plan')}
+                  className="btn-primary flex-1 sm:flex-none py-4 px-10 text-lg font-bold inline-block"
+                >
+                  View My Plan
+                </button>
+                <button
+                  onClick={() => navigate('/select-plan')}
+                  className="btn-secondary flex-1 sm:flex-none py-4 px-10 text-lg font-bold inline-block"
+                >
+                  Browse Plans
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => navigate('/assessment')}
+                className="btn-primary w-full sm:w-auto py-4 px-10 text-lg font-bold inline-block"
+              >
+                Start Assessment
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Tracking Section */}
