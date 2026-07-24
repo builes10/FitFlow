@@ -1,4 +1,4 @@
-import { WorkoutPlan, WorkoutDay, ExerciseInWorkout, FitnessAssessment, User, FitnessLevel } from '@/types'
+import { WorkoutPlan, WorkoutDay, WorkoutPhase, ExerciseInWorkout, FitnessAssessment, User, FitnessLevel } from '@/types'
 import { exerciseService } from './exerciseService'
 import { databaseService } from './databaseService'
 
@@ -64,7 +64,7 @@ export const workoutService = {
         let schedule = []
         const scheduleData = typeof plan.schedule_json === 'string' ? JSON.parse(plan.schedule_json) : plan.schedule_json
 
-        // Convert week1, week2, etc. structure to flat array
+        // Convert week1, week2, etc. structure to flat array with 3 phases
         if (scheduleData && typeof scheduleData === 'object') {
           const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
           let dayIndex = 0
@@ -75,17 +75,60 @@ export const workoutService = {
               const week = scheduleData[weekKey]
               if (Array.isArray(week)) {
                 for (const day of week) {
+                  const exercises = (day.exercises || []).map((name: string) => ({
+                    id: `ex_${name}`,
+                    name,
+                    sets: 3,
+                    reps: '8-12',
+                    rest: 60,
+                    completed: false,
+                  }))
+
+                  // Split exercises into 3 phases
+                  const warmupCount = Math.max(1, Math.floor(exercises.length / 4))
+                  const wodCount = Math.max(1, Math.floor(exercises.length / 4))
+                  const strengthCount = exercises.length - warmupCount - wodCount
+
+                  const warmup = exercises.slice(0, warmupCount).map(ex => ({
+                    ...ex,
+                    sets: 2,
+                    reps: '12-15',
+                  }))
+                  const strength = exercises.slice(warmupCount, warmupCount + strengthCount).map(ex => ({
+                    ...ex,
+                    sets: 4,
+                    reps: '6-8',
+                  }))
+                  const wod = exercises.slice(warmupCount + strengthCount).map(ex => ({
+                    ...ex,
+                    sets: 3,
+                    reps: '10-12',
+                  }))
+
                   schedule.push({
                     id: `day_${dayIndex}`,
                     day: dayNames[dayIndex % 7],
-                    exercises: (day.exercises || []).map((name: string) => ({
-                      id: `ex_${name}`,
-                      name,
-                      sets: 3,
-                      reps: '8-12',
-                      completed: false,
-                    })),
-                    duration: 45,
+                    phases: [
+                      {
+                        phase: 'warmup',
+                        phaseTitle: '🔥 Calentamiento',
+                        exercises: warmup,
+                        duration: 10,
+                      },
+                      {
+                        phase: 'strength',
+                        phaseTitle: '💪 Fortalecimiento',
+                        exercises: strength,
+                        duration: 30,
+                      },
+                      {
+                        phase: 'wod',
+                        phaseTitle: '⚡ WOD Final',
+                        exercises: wod,
+                        duration: 10,
+                      },
+                    ],
+                    totalDuration: 50,
                     intensity: 'moderate',
                   })
                   dayIndex++
@@ -184,11 +227,56 @@ function createWorkoutDay(
   // Select exercises based on focus area
   const exercises = selectExercises(focus, level, goals)
 
+  // Split into 3 phases
+  const warmupCount = Math.max(1, Math.floor(exercises.length / 4))
+  const wodCount = Math.max(1, Math.floor(exercises.length / 4))
+  const strengthCount = exercises.length - warmupCount - wodCount
+
+  const warmup: ExerciseInWorkout[] = exercises.slice(0, warmupCount).map(ex => ({
+    ...ex,
+    sets: 2,
+    reps: '12-15',
+    rest: 45,
+  }))
+  const strength: ExerciseInWorkout[] = exercises.slice(warmupCount, warmupCount + strengthCount).map(ex => ({
+    ...ex,
+    sets: 4,
+    reps: '6-8',
+    rest: 90,
+  }))
+  const wod: ExerciseInWorkout[] = exercises.slice(warmupCount + strengthCount).map(ex => ({
+    ...ex,
+    sets: 3,
+    reps: '10-12',
+    rest: 60,
+  }))
+
+  const totalDuration = intensity === 'high' ? 60 : intensity === 'moderate' ? 50 : 40
+
   return {
     id: `day_${Date.now()}_${Math.random()}`,
     day,
-    exercises,
-    duration: intensity === 'high' ? 60 : intensity === 'moderate' ? 50 : 40,
+    phases: [
+      {
+        phase: 'warmup',
+        phaseTitle: '🔥 Calentamiento',
+        exercises: warmup,
+        duration: Math.floor(totalDuration * 0.2),
+      },
+      {
+        phase: 'strength',
+        phaseTitle: '💪 Fortalecimiento',
+        exercises: strength,
+        duration: Math.floor(totalDuration * 0.6),
+      },
+      {
+        phase: 'wod',
+        phaseTitle: '⚡ WOD Final',
+        exercises: wod,
+        duration: Math.floor(totalDuration * 0.2),
+      },
+    ],
+    totalDuration,
     intensity,
   }
 }
@@ -222,7 +310,8 @@ function selectExercises(focus: string[], level: FitnessLevel, goals: any[]): Ex
   const selected = exerciseService.getRandomExercises(count)
 
   return selected.slice(0, count).map((e) => ({
-    exerciseId: e.id,
+    id: e.id,
+    name: e.name,
     sets: e.sets || 3,
     reps: e.reps || '8-12',
     rest: e.rest || 60,

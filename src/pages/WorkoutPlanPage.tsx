@@ -102,56 +102,61 @@ export const WorkoutPlanPage = () => {
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-white mb-6">Weekly Schedule</h2>
 
-          {plan.schedule.slice(0, plan.daysPerWeek).map((day) => {
-            const exerciseDetails = day.exercises.map((ex) => ({
-              ...ex,
-              name: exerciseService.getById(ex.exerciseId)?.name || ex.exerciseId,
-            }))
-
-            return (
-              <div
-                key={day.id}
-                className="card cursor-pointer hover:border-[#ff6b35] transition"
-                onClick={() => setExpandedDay(expandedDay === day.id ? null : day.id)}
-              >
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">💪</span>
-                    <div>
-                      <h3 className="text-lg font-black text-white">{day.day}</h3>
-                      <p className="text-sm text-gray-400">{day.exercises.length} exercises</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-bold text-[#ff6b35]">{day.duration} min</p>
-                    <p className="text-xs text-gray-400 capitalize">{day.intensity}</p>
+          {plan.schedule.slice(0, plan.daysPerWeek).map((day) => (
+            <div
+              key={day.id}
+              className="card cursor-pointer hover:border-[#ff6b35] transition"
+              onClick={() => setExpandedDay(expandedDay === day.id ? null : day.id)}
+            >
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">💪</span>
+                  <div>
+                    <h3 className="text-lg font-black text-white">{day.day}</h3>
+                    <p className="text-sm text-gray-400">3 fases • {day.phases.reduce((sum, p) => sum + p.exercises.length, 0)} ejercicios</p>
                   </div>
                 </div>
-
-                {/* Expanded Exercises */}
-                {expandedDay === day.id && (
-                  <div className="mt-4 pt-4 border-t border-[#2d3355]/50 space-y-3">
-                    {exerciseDetails.map((ex, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-[#0a0e27] rounded-lg p-3 border border-[#2d3355]/50"
-                      >
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-bold text-white">{ex.name}</h4>
-                          <span className="text-xs bg-[#ff6b35]/20 text-[#ff6b35] px-2 py-1 rounded">
-                            {ex.sets}x{ex.reps}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-400">
-                          Rest: {ex.rest}s {ex.weight && `• Weight: ${ex.weight}kg`}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="text-right">
+                  <p className="font-bold text-[#ff6b35]">{day.totalDuration} min</p>
+                  <p className="text-xs text-gray-400 capitalize">{day.intensity}</p>
+                </div>
               </div>
-            )
-          })}
+
+              {/* Expanded Phases */}
+              {expandedDay === day.id && (
+                <div className="mt-4 pt-4 border-t border-[#2d3355]/50 space-y-4">
+                  {day.phases.map((phase, phaseIdx) => (
+                    <div key={phaseIdx} className="bg-[#0a0e27] rounded-lg p-4 border border-[#2d3355]/50">
+                      <div className="flex justify-between items-center mb-3">
+                        <h4 className="font-black text-white">{phase.phaseTitle}</h4>
+                        <span className="text-xs bg-[#ff6b35]/20 text-[#ff6b35] px-2 py-1 rounded">
+                          {phase.duration} min
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        {phase.exercises.map((ex, exIdx) => (
+                          <div key={exIdx} className="bg-[#1a1f3a] rounded p-3 border border-[#2d3355]/30">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1">
+                                <p className="font-bold text-white">{ex.name}</p>
+                                <p className="text-xs text-gray-400 mt-1">
+                                  {ex.sets}x{ex.reps} • Rest: {ex.rest}s
+                                  {ex.weight && ` • ${ex.weight}kg`}
+                                </p>
+                              </div>
+                              <span className="text-xs bg-[#ff6b35]/20 text-[#ff6b35] px-2 py-1 rounded ml-2">
+                                {ex.sets}x{ex.reps}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Action Buttons */}

@@ -210,19 +210,28 @@ export interface EquipmentProfile {
 
 // MARK: - Workout Plan Types (SPRINT 3)
 export interface ExerciseInWorkout {
-  exerciseId: string
+  id: string
+  name: string
   sets: number
   reps: string
   rest: number // seconds
   weight?: number
   notes?: string
+  completed?: boolean
+}
+
+export interface WorkoutPhase {
+  phase: 'warmup' | 'strength' | 'wod'
+  phaseTitle: string
+  exercises: ExerciseInWorkout[]
+  duration: number // minutes
 }
 
 export interface WorkoutDay {
   id: string
   day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
-  exercises: ExerciseInWorkout[]
-  duration: number // minutes
+  phases: WorkoutPhase[]
+  totalDuration: number // minutes
   intensity: 'light' | 'moderate' | 'high'
 }
 
